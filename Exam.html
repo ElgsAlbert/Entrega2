@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercici 9 octubre</title>
+    <link rel="stylesheet" type="text/css" href="exacs.css">
+</head>
+<!-- Vaig trobar una biblioteca que et permetia fer petits logos que vaig creure visualment bons per el footer, per aquest motiu he hagut d'afegir un script -->
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+<body>
+    <nav class="nav">
+        <img src="img/fletxa.png" alt="logo" class="logo"/>
+        <ul id="menuList" class="menu inactive">
+            <li class="item"><a href="#">Definició</a></li>
+            <li class="item"><a href="#">Us</a></li>
+            <li class="item"><a href="#">Arrays</a></li>
+            <li class="item"><a href="#">Strings</a></li>
+            <li class="item"><a href="#">Void</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <!-- Per aquesta entrega (sense js) deixare tots els articles en vertical, es a dir la varra de navegacio no tindra funcionalitat. Un cop implementat
+        js nomes s'ensenyara un article per pantalla (el clickat a la barra de navegació) -->
+        <article>
+            <h2>
+                Què és un punter?
+            </h2>
+            <br>
+            <p class="parag">
+                En programació bàsica hem pogut veure com les variables són informació localitzada en certes posicions de memòria que el nostre ordinador ens reserva,
+                en cas de que volguéssim accedir a aquestes haviem de dirigir-nos amb el nom de la variable. D'aquesta forma el programa no s'ha de preocupar de 
+                la adressa de la memòria, només del nom de la variable.<br>
+                <br>
+                <p class="animat">int <italic>x</italic> = 0;   
+                    <p class="invisible"> Adreça: 0x7ffeb2ec600c </p> 
+                </p> 
+                <br>
+                En un programa de C++, la memòria d'un ordinador és una successió de cel·les d'un byte. Aquestes cel·les treballen de tal forma que permet que 
+                informació que representa més d'un byte ocupi cel·les consecutives.<br>
+                Els punters són representacions simbòliques d'adreces. D'aquesta manera podem crear i manipular estructures de dades dinàmiques. 
+                Iterar sobre elements en matrius o altres estructures de dades és un dels principals usos dels punters.
+                L'adreça de la variable amb la qual estem treballant s'assigna a la variable punter que apunta al mateix tipus de dada
+                (com ara un int o una cadena).
+            </p>
+            <img src="img/pointers-in-c.png" alt="Punters, variables i memoria" class="Exemple_punter"/>   
+        </article>
+
+        <article>
+            <h2>
+                Declaració i us de punters
+            </h2>
+            <br>
+            <p>
+                Un punter és una variable el valor de la qual és l'adreça d'una altra variable. Com qualsevol variable o constant, 
+                hem de declarar un punter abans de poder treballar-hi. La forma general d'una declaració de variable punter és:<br>
+                tipus *nomVariable;
+                <br>
+                Aquí, el 'tipus' és el tipus de base del punter, ha de ser un tipus C++ vàlid i 'var-name' és el nom de la variable punter. 
+                L'asterisc que hem utilitzat per declarar un punter és el mateix asterisc que fem servir per a la multiplicació. 
+                Però, en aquesta declaració s'utilitza l'asterisc per designar una variable com a punter.
+            </p>
+            <p>
+            <pre>
+                <code>
+                    int  var = 20;   // Declaració de variable int
+                    int  *ip;        // Declaració d'un punter
+
+                    ip = &var;       // Guardar l'adreça de var al punter ip
+
+                    cout << "Valor de var: ";
+                    cout << var << endl;
+
+
+                    cout << "Adreça guardada a ip: ";
+                    cout << ip << endl;
+
+                    cout << "Volr de *ip variable (=var): ";
+                    cout << *ip << endl;
+                </code>
+            </pre>
+            <button class="btn"><span>Compilar</span></button>
+            <br>
+            <p>Per obtenir el valor assenyalat per un punter, utilitzem l'operador *, com hem vist en el còdig superior amb *ip.<br>
+                Quan s'utilitza * amb punters, s'anomena operador de desreferència. Funciona sobre un punter i dóna el valor assenyalat per 
+                l'adreça emmagatzemada al punter. És a dir, <code>  *ip = var;</code>
+            </p>
+            <p>
+                L'adreça d'una variable es pot obtenir precidint el nom d'una variable amb un signe (&). 
+                Per exemple: <code>ip = &var;</code> En aquest cas estem assigant a ip la adreça de var, no el contingut!
+            </p>
+            <img src="img/PointersinC.png" alt="Punters exemple visual" class="Exemple_punter"/>
+        </article>
+
+        <article>
+            <h2>
+                Punter i arrays
+            </h2>
+            <br>
+            <p>
+                El concepte de matrius està relacionat amb el de punters. De fet, les matrius funcionen molt com els punters als seus primers elements i, 
+                de fet, una matriu sempre es pot convertir implícitament en el punter del tipus adequat. Per exemple, considerem aquestes dues declaracions:
+                <pre>
+                    <code>
+                        int array [20];
+                        int * punter;
+                    </code>
+                 </pre>
+                El següent seria vàlid:
+                <code>punter = array;</code>
+                Després d'això, <code>punter</code> i <code>array</code> serien equivalents i tindrien propietats molt similars. La diferència principal és 
+                que a <code>punter</code> se li pot assignar una adreça diferent, mentre que a <code>array</code> mai se li pot assignar res, i sempre representarà el mateix bloc de 
+                20 elements de tipus int. Per tant, la següent assignació no seria vàlida: array = punter;
+            </p><br>
+            <h2>Treballar en un array amb punters</h2>
+            <p>
+                Un nom de matriu conté l'adreça del primer element de la matriu que actua com un punter constant. Vol dir que l'adreça 
+                emmagatzemada al nom de la matriu no es pot canviar.  Per exemple, si tenim una matriu anomenada val, val i &val[0] 
+                es poden utilitzar indistintament.
+            </p>
+            <pre>
+                <code>
+                    //Declarem una array
+                    int val[3] = { 5, 10, 20 };
+  
+                    // Declarem un punter
+                    int* ptr;
+  
+                    // Assignem la adreça de val[0] a ptr
+                    // Ara podem utilitzar ptr=&val[0]; (són el mateix)
+                    ptr = val;
+                    cout << "Elements de l'array són: ";
+                    cout << ptr[0] << " " << ptr[1] << " " << ptr[2];
+                </code>
+            </pre>
+            <button class="btn"><span>Compilar</span></button>
+            <br>
+            <h2>
+                Diferències
+            </h2>
+            <br>
+            <table>
+                <tr>
+                    <th>Punters</th>
+                    <th>Arrays</th>
+                </tr>
+                <tr>
+                    <th>1. Es declara com: tipusDada *nom;</th>
+                    <th>Es declara tipusDada nom[tamany]</th>
+                </tr>
+                <tr>
+                    <th>2. S'utilitza per emmagatzemar l'adreça de diferents variables del mateix tipus de dades. </th>
+                    <th>S'utilitza per emmagatzemar la variable interior del mateix tipus de dades</th>
+                </tr>
+                <tr>
+                    <th>3. Podem generar un punter a la matriu.</th>
+                    <th>Podem generar una matriu d'un punter</th>
+                </tr>
+                <tr>
+                    <th>4. Està dissenyat per emmagatzemar l'adreça de la variable</th>
+                    <th>Està dissenyat per emmagatzemar el valor de la variable.</th>
+                </tr>
+                <tr>
+                    <th>5. Una variable punter només pot emmagatzemar l'adreça d'una variable alhora.</th>
+                    <th>Una matriu pot emmagatzemar el nombre d'elements de la mateixa mida que la mida de la variable de matriu.</th>
+                </tr>
+            </table>
+        </article>
+
+        <article >
+            <h2>
+                Punters i strings
+            </h2>
+            <br>
+            <p>
+                Els strings són matrius de caràcters de tipus més un caràcter nul (\0) final, 
+                amb cadascun dels seus elements de tipus const char (ja que els caràcters de la cadena no es poden modificar). Per exemple:
+            </p>
+            <code>const char *var = "Vic";</code>
+            <p>
+                Això declara una matriu amb la representació literal de "Vic", i després s'assigna un punter al seu primer element a ptr. 
+                Si imaginem que "Vic" s'emmagatzema a les ubicacions de memòria que comencen a l'adreça 1800, podem representar la declaració anterior com:
+            </p>
+            <br><br>
+            <table>
+                <tr>
+                    <th>'V'</th>
+                    <th>'i'</th>
+                    <th>'c'</th>
+                    <th>'\0'</th>
+                </tr>
+                <tr>
+                    <th>'1800'</th>
+                    <th>'1801'</th>
+                    <th>'1802'</th>
+                    <th>'1803'</th>
+                </tr>
+            </table>
+            <br><br>
+            <p>Aquí 'var' és un punter i apunta a 1800  ni a 'V' ni a 'Vic'. Com hem esmentat un punter pot actuar com un array, també podem recorre aquestes,
+                per exemple: 
+            </p>
+            <code>
+                *(var+2)=var[2]
+            </code>
+            <br><br>
+            <h2>
+                Aritmètica de punters
+            </h2>
+            <br>
+            <p>
+                Es pot realitzar un conjunt limitat d'operacions aritmètiques sobre punters que són:
+            </p>
+            <lu>
+                <li>Incrementar (++)</li>
+                <li>Disminuïr (—)</li>
+                <li>Es pot afegir un nombre enter a un punter (+ o +=)</li>
+                <li>Un nombre enter es pot restar d'un punter (- o -=)</li>
+                <li>Diferència entre dos punters (p1-p2)</li>
+            </lu>
+            <br>
+            <pre>
+                <code>
+                    // Declare an array
+                    int v[3] = { 10, 100, 200 };
+  
+                    // Declarar un punter
+                    int* ptr;
+  
+                    // Asignar l'adreça de v[0] a ptr
+                    ptr = v;
+  
+                    for (int i = 0; i < 3; i++) {
+                        cout << "Valor de ptr = " << ptr << "\n";
+                        cout << "Valor de *ptr = " << *ptr << "\n";
+  
+                    // Incrementem punter ptr més 1
+                    ptr++;
+                    }
+                </code>
+            </pre>
+            <button class="btn"><span>Compilar</span></button>
+        </article>
+
+        <article>
+            <h2>
+                Punters void
+            </h2>
+            <hr>
+            <p>
+                Un punter buit és un punter que no té cap tipus de dades associat. Un punter buit pot contenir 
+                adreces de qualsevol tipus i es pot escriure a qualsevol tipus.
+            </p>
+            <pre>
+                <code>
+                    int a = 10;
+                    char b = 'x';
+     
+                    void* p = &a;  // Punter void conté adreces de int 'a'
+                    p = &b; // Punter void conté adreces de char 'b'
+                </code>
+            </pre>
+            <p>
+                Avantatge de punters a void:<br>
+                1) malloc() i calloc() retornen el tipus void * i això permet utilitzar aquestes funcions per assignar 
+                memòria de qualsevol tipus de dades (només a causa de void *)<br>
+                S'ha de tenir en compte que el programa anterior es compila en C, però no es compila en C++. 
+                En C++, s'ha de espicificar el valor de retorn de malloc a (int *). 2) 
+                Els punters buits en C s'utilitzen per implementar funcions genèriques en C.
+            </p>
+        </article>
+    </section>
+
+    <footer>
+        <ul class="icons">
+            <!-- ion-icon et permet posar petits icones -->
+            <li><a href="https://github.com/ElgsAlbert"><ion-icon name="logo-github"></ion-icon></a></li> 
+            <li><a href="mailto:someone@yoursite.com"><ion-icon name="mail-outline"></ion-icon></a></li>
+            <li><a href="https://www.instagram.com/albertelgstrom/"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        </ul>
+        <ul class="menu">
+                <li><a href="#">Inici</a></li>
+                <li><a href="#">Recursos</a></li>
+                <li><a href="#">Uvic</a></li>
+                <li><a href="#">Contacte</a></li>
+        </ul>
+            <div class="copyright">
+                <p>Copyright © 2016 Albert Elgström</p>
+            </div>
+    </footer>
+</body>
