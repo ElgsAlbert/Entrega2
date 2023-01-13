@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exercici 9 octubre</title>
     <link rel="stylesheet" type="text/css" href="exacs.css">
+    <script type="text/javascript" src="js.js"></script>
+    <script type="text/javascript" src="cod.js"></script>
+
 </head>
 <!-- Vaig trobar una biblioteca que et permetia fer petits logos que vaig creure visualment bons per el footer, per aquest motiu he hagut d'afegir un script -->
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
@@ -13,19 +16,17 @@
 <body>
     <nav class="nav">
         <img src="img/fletxa.png" alt="logo" class="logo"/>
-        <ul id="menuList" class="menu inactive">
-            <li class="item"><a href="#">Definició</a></li>
-            <li class="item"><a href="#">Us</a></li>
-            <li class="item"><a href="#">Arrays</a></li>
-            <li class="item"><a href="#">Strings</a></li>
-            <li class="item"><a href="#">Void</a></li>
+        <ul id="IdMenuList" class="menu inactive">
+            <li><a href="#" class="actual" id="1">Definició</a></li>
+            <li><a href="#" class="" id="2">Us</a></li>
+            <li><a href="#" class="" id="3">Arrays</a></li>
+            <li><a href="#" class="" id="4">Strings</a></li>
+            <li><a href="#" class="" id="5">Void</a></li>
         </ul>
     </nav>
 
-    <section>
-        <!-- Per aquesta entrega (sense js) deixare tots els articles en vertical, es a dir la varra de navegacio no tindra funcionalitat. Un cop implementat
-        js nomes s'ensenyara un article per pantalla (el clickat a la barra de navegació) -->
-        <article>
+    <section id="IdSection">
+        <article class="">
             <h2>
                 Què és un punter?
             </h2>
@@ -49,7 +50,7 @@
             <img src="img/pointers-in-c.png" alt="Punters, variables i memoria" class="Exemple_punter"/>   
         </article>
 
-        <article>
+        <article class="amagat">
             <h2>
                 Declaració i us de punters
             </h2>
@@ -64,7 +65,7 @@
                 Però, en aquesta declaració s'utilitza l'asterisc per designar una variable com a punter.
             </p>
             <p>
-            <pre>
+            <pre >
                 <code>
                     int  var = 20;   // Declaració de variable int
                     int  *ip;        // Declaració d'un punter
@@ -78,12 +79,23 @@
                     cout << "Adreça guardada a ip: ";
                     cout << ip << endl;
 
-                    cout << "Volr de *ip variable (=var): ";
+                    cout << "Valor de *ip variable (=var): ";
                     cout << *ip << endl;
                 </code>
             </pre>
-            <button class="btn"><span>Compilar</span></button>
+
+
+            <div class="clearfix">
+                <button class="btn"><span>Compilar</span></button>
+                <div class="bot-amagat">
+                    <div class="btn" id="compilat">
+                        <p>20<br/>0x7ffeb2ec600c<br/>20<br/></p>
+                    </div>
+                </div>
+            </div>
             <br>
+            
+            
             <p>Per obtenir el valor assenyalat per un punter, utilitzem l'operador *, com hem vist en el còdig superior amb *ip.<br>
                 Quan s'utilitza * amb punters, s'anomena operador de desreferència. Funciona sobre un punter i dóna el valor assenyalat per 
                 l'adreça emmagatzemada al punter. És a dir, <code>  *ip = var;</code>
@@ -95,7 +107,7 @@
             <img src="img/PointersinC.png" alt="Punters exemple visual" class="Exemple_punter"/>
         </article>
 
-        <article>
+        <article class="amagat">
             <h2>
                 Punter i arrays
             </h2>
@@ -136,7 +148,14 @@
                     cout << ptr[0] << " " << ptr[1] << " " << ptr[2];
                 </code>
             </pre>
-            <button class="btn"><span>Compilar</span></button>
+            <div class="clearfix">
+                <button class="btn"><span>Compilar</span></button>
+                <div class="bot-amagat">
+                    <div class="btn" id="compilat2">
+                        <p>5 10 20</p>
+                    </div>
+                </div>
+            </div>
             <br>
             <h2>
                 Diferències
@@ -170,7 +189,7 @@
             </table>
         </article>
 
-        <article >
+        <article class="amagat">
             <h2>
                 Punters i strings
             </h2>
@@ -224,7 +243,7 @@
             <br>
             <pre>
                 <code>
-                    // Declare an array
+                    // Declarar una array
                     int v[3] = { 10, 100, 200 };
   
                     // Declarar un punter
@@ -233,7 +252,7 @@
                     // Asignar l'adreça de v[0] a ptr
                     ptr = v;
   
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 2; i++) {
                         cout << "Valor de ptr = " << ptr << "\n";
                         cout << "Valor de *ptr = " << *ptr << "\n";
   
@@ -242,10 +261,19 @@
                     }
                 </code>
             </pre>
-            <button class="btn"><span>Compilar</span></button>
+            <div class="clearfix">
+                <button class="btn"><span>Compilar</span></button>
+                <div class="bot-amagat">
+                    <div class="btn" id="compilat3">
+                        <p>Valor de ptr = 0x7ffe5a2d8060<br/>Valor de *ptr = 10<br/><br/>Valor de ptr = 0x7ffe5a2d8064<br/>Valor de *ptr = 100<br/></p>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
         </article>
 
-        <article>
+        <article class="amagat">
             <h2>
                 Punters void
             </h2>
